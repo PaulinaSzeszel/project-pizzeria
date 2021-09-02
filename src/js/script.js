@@ -53,7 +53,7 @@
   };
 
   class Product{
-      constructor(id, data){
+    constructor(id, data){
       const thisProduct = this;
 
       thisProduct.id = id;
@@ -93,7 +93,7 @@
         event.preventDefault();
 
         /* find active product (product that has active class) */
-        const activeProduct = thisProduct.element.querySelector('article.' + classNames.menuProduct.wrapperActive);
+        const activeProduct = document.querySelector('article.' + classNames.menuProduct.wrapperActive);
 
         /* if there is active product and it's not thisProduct.element, remove class active from it */
         if (activeProduct !== null && activeProduct !== thisProduct.element){
@@ -102,7 +102,7 @@
 
         /* toggle active class on thisProduct.element */
         thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
-    });
+      });
 
     }
   }
