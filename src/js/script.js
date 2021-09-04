@@ -163,11 +163,6 @@
           const option = param.options[optionId];
           console.log(optionId, option);
 
-          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
-          console.log(paramId);
-          const optionImage = thisProduct.imageWrapper.querySelector( '.' + paramId + '-' + optionId );
-          console.log(optionImage);
-
           // check if there is param with a name of paramId in formData and if it includes optionId
           if(formData[paramId] && formData[paramId].includes(optionId)) {
             // check if the option is not default
@@ -175,28 +170,26 @@
             if(option != option.default) {
               price += option.price;
             }
-          else {
+            else {
             // check if the option is default
-            if(option == option.default) {
-              price -= option.price;
-            }
+              if(option == option.default) {
+                price -= option.price;
+              }
 
-            if(optionSelected){
-            if(optionImage){
-              optionImage.classList.add(classNames.menuProduct.imageVisible);
-          }
-          if(optionImage) {
-              optionImage.classList.remove(classNames.menuProduct.imageVisible);
+              const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+              if (optionImage) {
+                  optionImage.classList.add(classNames.menuProduct.imageVisible);
+                } else {
+                  optionImage.classList.remove(classNames.menuProduct.imageVisible);
+                }
             }
           }
         }
+        // update calculated price in the HTML
+        thisProduct.priceElem.innerHTML = price;
       }
     }
-      // update calculated price in the HTML
-      thisProduct.priceElem.innerHTML = price;
-    }
   }
-}
 
   const app = {
     initMenu: function(){
