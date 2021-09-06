@@ -163,33 +163,36 @@
           const option = param.options[optionId];
           console.log(optionId, option);
 
-          // check if there is param with a name of paramId in formData and if it includes optionId
-          if(formData[paramId] && formData[paramId].includes(optionId)) {
-            // check if the option is not default
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+          //console.log(paramId);
 
+          const optionImage = thisProduct.imageWrapper.querySelector( '.' + paramId + '-' + optionId );
+          //console.log(optionImage);
+
+          // check if there is param with a name of paramId in formData and if it includes optionId
+          //console.log(optionId, option, optionSelected, optionImage)
+          if(optionSelected) {
             if(option != option.default) {
               price += option.price;
             }
-            else {
-            // check if the option is default
-              if(option == option.default) {
-                price -= option.price;
-              }
-
-              const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
-              if (optionImage) {
-                  optionImage.classList.add(classNames.menuProduct.imageVisible);
-                } else {
-                  optionImage.classList.remove(classNames.menuProduct.imageVisible);
-                }
+            if(optionImage) {
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            }
+          } else {
+            if(option == option.default) {
+              price -= option.price;
+            }
+            if(optionImage) {
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
             }
           }
         }
+      }
+
         // update calculated price in the HTML
         thisProduct.priceElem.innerHTML = price;
       }
     }
-  }
 
   const app = {
     initMenu: function(){
