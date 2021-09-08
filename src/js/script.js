@@ -261,29 +261,29 @@
       const formData = utils.serializeFormToObject(thisProduct.form);
       const params = {};
 
-  // for very category (param)
-  for(let paramId in thisProduct.data.params) {
-    const param = thisProduct.data.params[paramId];
+      // for very category (param)
+      for(let paramId in thisProduct.data.params) {
+        const param = thisProduct.data.params[paramId];
 
-    // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
-    params[paramId] = {
-      label: param.label,
-      options: {}
-    }
+        // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
+        params[paramId] = {
+          label: param.label,
+          options: {}
+        };
 
-    // for every option in this category
-    for(let optionId in param.options) {
-      const option = param.options[optionId];
-      const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+        // for every option in this category
+        for(let optionId in param.options) {
+          //const option = param.options[optionId];
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
 
-      if(optionSelected) {
-        params[paramId].options[optionId] = optionId;
+          if(optionSelected) {
+            params[paramId].options[optionId] = optionId;
+          }
+        }
       }
+      return params;
     }
   }
-  return params;
-}
-}
 
   class AmountWidget{
     constructor(element){
@@ -381,7 +381,6 @@
       const generatedHTML = templates.cartProduct(menuProduct);
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
-      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       thisCart.dom.productList.appendChild(generatedDOM);
 
     }
