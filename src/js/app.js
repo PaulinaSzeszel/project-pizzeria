@@ -1,6 +1,8 @@
-import {settings, select, classNames} from './settings.js';
+import {settings, select, classNames, templates} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
+import utils from './utils.js';
+import AmountWidget from './components/AmountWidget.js';
 
 export const app = {
   initMenu: function(){
