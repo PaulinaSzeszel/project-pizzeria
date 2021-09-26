@@ -1,5 +1,5 @@
-import {select, settings, classNames, templates} from './settings.js';
-import utils from './components/utils.js';
+import { select, settings, classNames, templates } from '../settings.js';
+import utils from '../utils.js';
 import CartProduct from './CartProduct.js';
 
 class Cart {
@@ -10,13 +10,15 @@ class Cart {
 
     thisCart.getElements(element);
     thisCart.initActions();
-    //console.log('new Cart' , thisCart);
+
+    //console.log('new Cart', thisCart);
   }
 
   getElements(element){
     const thisCart = this;
 
     thisCart.dom = {};
+
     thisCart.dom.wrapper = element;
 
     thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
@@ -26,6 +28,8 @@ class Cart {
     thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
     thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
     thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
+    thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
+    thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
   }
 
   initActions(){
@@ -43,6 +47,7 @@ class Cart {
     thisCart.dom.productList.addEventListener('remove', function(event){
       thisCart.remove(event.detail.cartProduct);
     });
+
     thisCart.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
       thisCart.sendOrder();
@@ -52,16 +57,22 @@ class Cart {
   add(menuProduct){
     const thisCart = this;
 
+    // generate HTML based on template
     const generatedHTML = templates.cartProduct(menuProduct);
+    //create element using utils.createElementFormHTML
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
     //console.log('thisCart.products', thisCart.products);
 
+    // add element to menu
     thisCart.dom.productList.appendChild(generatedDOM);
+
+
 
     thisCart.update();
   }
+
   update(){
     const thisCart = this;
 
@@ -80,6 +91,8 @@ class Cart {
       thisCart.totalPrice = thisCart.subTotalPrice + thisCart.deliveryFee;
     }
 
+    //console.log(thisCart.dom.totalPrice, thisCart.totalPrice);
+
     thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
     thisCart.dom.subTotalPrice.innerHTML = thisCart.subTotalPrice;
     thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
@@ -92,7 +105,10 @@ class Cart {
       item.innerHTML = thisCart.totalPrice;
       item2.innerHTML = thisCart.totalPrice;
     }
+    //console.log(totalNumber);
+
   }
+
   remove(cartProduct){
     const thisCart = this;
 
@@ -104,6 +120,7 @@ class Cart {
 
     thisCart.update();
   }
+
   sendOrder(){
     const thisCart = this;
 
@@ -118,7 +135,7 @@ class Cart {
       deliveryFee: thisCart.deliveryFee,
       products: [],
     };
-    //console.log(payload);
+      //console.log(payload);
 
     for(let prod of thisCart.products) {
       payload.products.push(prod.getData());

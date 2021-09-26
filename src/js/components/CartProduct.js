@@ -1,7 +1,7 @@
-import {select} from './settings.js';
-import AmountWidget from './components/AmountWidget.js';
+import { select } from '../settings.js';
+import AmountWidget from './AmountWidget.js';
 
-export class CartProduct{
+class CartProduct {
   constructor(menuProduct, element){
     const thisCartProduct = this;
 
@@ -36,7 +36,6 @@ export class CartProduct{
     thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
     thisCartProduct.dom.amountWidget.addEventListener('updated', function(){
       //console.log(thisCartProduct.amount);
-
       thisCartProduct.amount = thisCartProduct.amountWidget.value;
       thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
@@ -68,6 +67,7 @@ export class CartProduct{
       thisCartProduct.remove();
     });
   }
+
   getData(){
     const thisCartProduct = this;
 
@@ -84,3 +84,6 @@ export class CartProduct{
     return objSummary;
   }
 }
+
+
+export default CartProduct;

@@ -1,15 +1,15 @@
-import {settings, select} from './settings.js';
+import { select, settings } from '../settings.js';
 
-class AmountWidget{
-  constructor(element){
+class AmountWidget {
+  constructor(element) {
     const thisWidget = this;
 
     thisWidget.getElements(element);
     thisWidget.setValue(thisWidget.input.value || settings.amountWidget.defaultValue);
     thisWidget.initActions();
 
-    //console.log('AmountWidget:' , thisWidget);
-    //console.log('constructor arguments:' , element);
+    //console.log('AmountWidget:', thisWidget);
+    //console.log('constructor arguments:', element);
   }
 
   getElements(element){
@@ -26,12 +26,15 @@ class AmountWidget{
 
     const newValue = parseInt(value);
 
+    //console.log(thisWidget.value, value, newValue, isNaN(newValue));
     /* TODO: Add validation */
-    if(thisWidget.value !== newValue && !isNaN(newValue) && value >= settings.amountWidget.defaultMin && value <= settings.amountWidget.defaultMax) {
+    if( thisWidget.value !== newValue && !isNaN(newValue) && value >= settings.amountWidget.defaultMin && value <= settings.amountWidget.defaultMax){
       thisWidget.value = newValue;
+      thisWidget.input.value = thisWidget.value;
       thisWidget.announce();
+    } else {
+      thisWidget.input.value = thisWidget.value;
     }
-    thisWidget.input.value = thisWidget.value;
   }
 
   initActions(){
@@ -48,7 +51,7 @@ class AmountWidget{
 
     thisWidget.linkIncrease.addEventListener('click', function(event){
       event.preventDefault();
-      thisWidget.setValue(thisWidget.value + 1);
+      thisWidget.setValue(thisWidget.value +1);
     });
   }
 

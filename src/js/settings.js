@@ -1,4 +1,3 @@
-
 export const select = {
   templateOf: {
     menuProduct: '#template-menu-product',
@@ -58,10 +57,10 @@ export const classNames = {
   },
 };
 
-export const settings = {
+export  const settings = {
   amountWidget: {
     defaultValue: 1,
-    defaultMin: 1,
+    defaultMin: 0,
     defaultMax: 10,
   },
   cart: {
@@ -74,7 +73,7 @@ export const settings = {
   },
 };
 
-export const templates = {
+export  const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
 };
