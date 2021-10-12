@@ -1,18 +1,18 @@
 #pages {
   > * {
-  display: none;
+    display: none;
   }
 
   > .active {
-  display: block;
+    display: block;
   }
 }
 
-  .booking-widget {
+.booking-widget {
   transform: opacity 500ms;
 
   &.loading {
-  opacity: 0.25;
+    opacity: 0.25;
   }
 }
 
@@ -30,7 +30,7 @@
   margin: 0 0 ($base-size * 2) 0;
 
   > .widget-amount {
-  margin: ($base-size * 2) 0 0 0;
+    margin: ($base-size * 2) 0 0 0;
   }
 }
 
@@ -62,28 +62,28 @@
   height: $base-size;
 
   &__handle {
-  box-shadow: none;
-  border: 0;
-  transition-timing-function: cubic-bezier(0, 1, 0, 1);
-  transition: transform 100ms;
+    box-shadow: none;
+    border: 0;
+    transition-timing-function: cubic-bezier(0, 1, 0, 1);
+    transition: transform 100ms;
 
-  &::after {
-  display: none;
+    &::after {
+      display: none;
+    }
+
+    &__horizontal {
+      width: ($base-size * 2);
+      height: ($base-size * 2);
+      top: -6px;
+      background: $color-dark;
+    }
   }
 
-  &__horizontal {
-    width: ($base-size * 2);
-    height: ($base-size * 2);
-    top: -6px;
-    background: $color-dark;
-  }
-}
-
-&__fill {
-  background: $color-success;
-  transition-timing-function: cubic-bezier(0, 1, 0, 1);
-  transition: width 100ms;
-  box-shadow: none;
+  &__fill {
+    background: $color-success;
+    transition-timing-function: cubic-bezier(0, 1, 0, 1);
+    transition: width 100ms;
+    box-shadow: none;
   }
 }
 
@@ -104,9 +104,9 @@
   background-repeat: repeat;
 
   > * {
-  position: absolute;
-  text-align: center;
-  vertical-align: center;
+    position: absolute;
+    text-align: center;
+    vertical-align: center;
   }
 
   .object {
@@ -149,48 +149,48 @@
       border-radius: 50%;
 
       &::after {
-      border-radius: 50%;
+        border-radius: 50%;
       }
     }
 
-      &.booked {
-        cursor: not-allowed;
-        color: lighten($color-dark, 40%);
+    &.booked {
+      cursor: not-allowed;
+      color: lighten($color-dark, 40%);
 
-        &::after {
-          position: absolute;
-          content: '';
-          width: 100%;
-          height: 100%;
-          left: 0;
-          top: 0;
-          background: $color-dark;
-          opacity: 0.4;
-        }
-
+      &::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: $color-dark;
+        opacity: 0.4;
       }
-    }
 
-    [data-table="1"] {
-      left: 40px;
-      top: 40px;
-    }
-
-    [data-table="2"] {
-      right: 25px;
-      top: 25px;
-      width: 100px;
-      height: 100px;
-      line-height: 100px;
-    }
-
-    [data-table="3"] {
-      right: 40px;
-      top: 180px;
     }
   }
 
-  .booking-options {
-    @include flex(row, flex-start, space-between);
-    margin: ($base-size * 4) auto;
+  [data-table="1"] {
+    left: 40px;
+    top: 40px;
   }
+
+  [data-table="2"] {
+    right: 25px;
+    top: 25px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+  }
+
+  [data-table="3"] {
+    right: 40px;
+    top: 180px;
+  }
+}
+
+.booking-options {
+  @include flex(row, flex-start, space-between);
+  margin: ($base-size * 4) auto;
+}
