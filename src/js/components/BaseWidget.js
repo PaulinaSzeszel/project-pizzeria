@@ -9,11 +9,11 @@ class BaseWidget{
     thisWidget.correctValue = initialValue;
   }
 
-get value(){
-  const thisWidget = this;
+  get value(){
+    const thisWidget = this;
 
-  return thisWidget.correctValue;
-}
+    return thisWidget.correctValue;
+  }
 
   set value(value){
     const thisWidget = this;
