@@ -1,6 +1,5 @@
-class BaseWidget{
-  constructor(wrapperElement, initialValue){
-
+class BaseWidget {
+  constructor (wrapperElement, initialValue){
     const thisWidget = this;
 
     thisWidget.dom = {};
@@ -9,7 +8,7 @@ class BaseWidget{
     thisWidget.correctValue = initialValue;
   }
 
-  get value(){
+  get value (){
     const thisWidget = this;
 
     return thisWidget.correctValue;
@@ -20,11 +19,19 @@ class BaseWidget{
 
     const newValue = thisWidget.parseValue(value);
 
-    if( newValue != thisWidget.correctValue && thisWidget.isValid(value)){
+
+    if(newValue != thisWidget.correctValue && thisWidget.isValid(newValue)){
       thisWidget.correctValue = newValue;
       thisWidget.announce();
     }
     thisWidget.renderValue();
+
+  }
+
+  setValue(value){
+    const thisWidget = this;
+
+    thisWidget.value = value;
   }
 
   parseValue(value){
@@ -44,17 +51,13 @@ class BaseWidget{
   announce(){
     const thisWidget = this;
 
-    const event = new CustomEvent('updated', {
+    const event = new CustomEvent ('updated', {
       bubbles: true
     });
+
     thisWidget.dom.wrapper.dispatchEvent(event);
   }
-
-  setValue(value){
-    const thisWidget = this;
-
-    thisWidget.value = value;
-  }
 }
+
 
 export default BaseWidget;
