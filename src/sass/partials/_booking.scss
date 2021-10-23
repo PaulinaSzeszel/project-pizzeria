@@ -32,6 +32,7 @@
   > .widget-amount {
     margin: ($base-size * 2) 0 0 0;
   }
+
 }
 
 .page__title {
@@ -53,6 +54,7 @@
     position: absolute;
     right: 0;
   }
+
 }
 
 .rangeSlider {
@@ -77,6 +79,7 @@
       top: -6px;
       background: $color-dark;
     }
+
   }
 
   &__fill {
@@ -151,6 +154,7 @@
       &::after {
         border-radius: 50%;
       }
+
     }
 
     &.booked {
@@ -193,4 +197,20 @@
 .booking-options {
   @include flex(row, flex-start, space-between);
   margin: ($base-size * 4) auto;
+}
+
+.selected {
+  cursor: pointer;
+  color: lighten($color-dark, 40%);
+  border: 3px dotted violet;
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0.4;
+  }
 }

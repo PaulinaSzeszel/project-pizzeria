@@ -11,8 +11,8 @@
         "init:gitignore:custom": "echo \"dist\" >> .gitignore",
         "test": "npm-run-all test:*",
         "test:html": "html-validate src/*.html",
-        "test:js": "eslint --fix src/js/",
-        "test:scss": "stylelint --fix src/sass/",
+        "test:js": "eslint src/js/",
+        "test:scss": "stylelint src/sass/",
         "build": "npm-run-all build:* test",
         "build:clean": "rimraf dist && mkdirp dist",
         "build:copy": "copyfiles -a -u 1 -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" dist",
@@ -30,8 +30,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "json-server": "^0.16.3",
-        "rangeslider-js": "^3.2.5"
+        "flickity": "^2.2.2",
+        "json-server": "^0.16.3"
     },
     "devDependencies": {
         "autoprefixer": "^10.2.4",
