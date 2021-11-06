@@ -53,7 +53,7 @@ class Booking {
                                      + '?' + params.eventsRepeat.join('&'),
     };
 
-    promise.all([
+    Promise.all([
       fetch(urls.booking),
       fetch(urls.eventsCurrent),
       fetch(urls.eventsRepeat),
@@ -63,7 +63,7 @@ class Booking {
         const eventsCurrentResponse = allResponses[1];
         const eventsRepeatResponse = allResponses[2];
 
-        return promise.all([
+        return Promise.all([
           bookingsResponse.json(),
           eventsCurrentResponse.json(),
           eventsRepeatResponse.json(),
@@ -158,7 +158,7 @@ class Booking {
     }
   }
 
-  render(element){
+  render(wrapper){
     const thisBooking = this;
 
     const generateHTML = templates.bookingWidget();
