@@ -199,10 +199,10 @@ class Booking {
       thisBooking.updateDOM();
     });
 
-    thisBooking.dom.formSubmit.addEventListener('submit', function(event){
-      event.preventDefault();
-      thisBooking.sendBooking();
-    });
+    //thisBooking.dom.formSubmit.addEventListener('submit', function(event){
+      //event.preventDefault();
+      //thisBooking.sendBooking();
+    //});
 
   }
 
